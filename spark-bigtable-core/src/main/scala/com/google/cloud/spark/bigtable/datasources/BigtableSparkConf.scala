@@ -235,6 +235,30 @@ class BigtableSparkConfBuilder extends Serializable {
     this
   }
 
+  def setMsasImageVersion(value: String): BigtableSparkConfBuilder = {
+    userAgentConf = userAgentConf.copy(msasImageVersion = value)
+    this
+  }
+
+  def setDataprocImage(value: String): BigtableSparkConfBuilder = setMsasImageVersion(value)
+
+  def setJavaVersion(value: String): BigtableSparkConfBuilder = {
+    userAgentConf = userAgentConf.copy(javaVersion = value)
+    this
+  }
+
+  def setScalaVersion(value: String): BigtableSparkConfBuilder = {
+    userAgentConf = userAgentConf.copy(scalaVersion = value)
+    this
+  }
+
+  def setDatabricksVersion(value: String): BigtableSparkConfBuilder = {
+    userAgentConf = userAgentConf.copy(databricksVersion = value)
+    this
+  }
+
+  def setDatabricksRuntime(value: String): BigtableSparkConfBuilder = setDatabricksVersion(value)
+
   def setCustomAuthenticationProvider(className: String,
                                       params: Map[String, String] = Map()): BigtableSparkConfBuilder = {
     customAuthConf = CustomAuthConfig(Some(className), params)
