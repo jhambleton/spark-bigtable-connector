@@ -259,6 +259,29 @@ class BigtableSparkConfBuilder extends Serializable {
 
   def setDatabricksRuntime(value: String): BigtableSparkConfBuilder = setDatabricksVersion(value)
 
+  def setK8sEnvironment(value: String): BigtableSparkConfBuilder = {
+    userAgentConf = userAgentConf.copy(k8sEnvironment = value)
+    this
+  }
+
+  def setKubernetesEnvironment(value: String): BigtableSparkConfBuilder = setK8sEnvironment(value)
+
+  def setMsasServerlessVersion(value: String): BigtableSparkConfBuilder = {
+    userAgentConf = userAgentConf.copy(msasServerlessVersion = value)
+    this
+  }
+
+  def setServerlessSparkVersion(value: String): BigtableSparkConfBuilder = setMsasServerlessVersion(value)
+
+  def setCustomPlatformOrRuntime(value: String): BigtableSparkConfBuilder = {
+    userAgentConf = userAgentConf.copy(customPlatformOrRuntime = value)
+    this
+  }
+
+  def setPlatform(platform: com.google.cloud.spark.bigtable.datasources.config.client.Platform): BigtableSparkConfBuilder = {
+    setCustomPlatformOrRuntime(platform.flag)
+  }
+
   def setCustomAuthenticationProvider(className: String,
                                       params: Map[String, String] = Map()): BigtableSparkConfBuilder = {
     customAuthConf = CustomAuthConfig(Some(className), params)
